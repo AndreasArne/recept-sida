@@ -1,0 +1,51 @@
+[
+    {
+        "title":"Flygande Jakob", 
+        "instr": [
+            "Bena ur kyckling och lägg i form. Strö över sallads krydda",
+            "Vispa grädde ganska fast, blanda ner creme frieche och chilli  sås. Bre över kycklingingen.",
+            "Klipp bacon i lagom bitar och stek lätt. Strö jordnötter över formen.",
+            "Laga i ugnen i 30 min, 175c.",
+            "Server med ris och sallad."
+        ],
+        "desc": "Detta är en jättegod Flygande Jakob utan banan",
+        "cook_time": 60,
+        "portions": "4-5",
+        "ingredients": [
+            {"label":"Grillad kyckling", "amount": "1"},
+            {"label":"Italiensk salladskrydda", "amount": "2 krdm"},
+            {"label":"Visp grädde", "amount": "3 dl"},
+            {"label":"Creme freiche", "amount": "1,5 dl"},
+            {"label":"Chilli sås", "amount": "1,5 dl"},
+            {"label":"Bacon", "amount": "2 paket"},
+            {"label":"Salta jordnötter", "amount": "1 dl"}
+        ]
+    },
+    {
+        "title":"Creme brulee", 
+        "instr": [
+            "Sätt ugenen på 160c",
+            "Koka upp grädde, mjölk och vaniljstången. Låt stå i 15 min.",
+            "Plocka upp vaniljstången",
+            "Vispa socker och äggulor tills det bleknar.",
+            "Vispa ner gräddblandningen lite i taget i äggsmeten. Dra av skum.",
+            "Fördela i formar. Dra av skum",
+            "Placera formar i en ugnsform och fyll med varmtvatten upp till hälften av formarnas höjd.",
+            "Grädda i ugnen 30-45 min tills smeten är \"woobly\".",
+            "Låt svalna i minst två timmar i kylskåpet.",
+            "Plocka ut formar 30 min innan sockring.",
+            "Ha på ett lager mer strösocker på varje form och bränn med brännare.",
+            "Låt svalna i 5 minuter innan förtäring."
+        ],
+        "desc": "Fantastisk och lätt Creme brulee.",
+        "cook_time": 195,
+        "portions": "6",
+        "ingredients": [
+            {"label":"Visp grädde", "amount": "4,5 dl"},
+            {"label":"Mjölk", "amount": "1,5 dl"},
+            {"label":"Äggulor", "amount": "6"},
+            {"label":"Strö socker", "amount": "75g (3/4dl)"},
+            {"label":"Vaniljstång", "amount": "1"}
+        ]
+    }
+]

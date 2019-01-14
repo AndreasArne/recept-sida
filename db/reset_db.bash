@@ -17,4 +17,4 @@ echo ">>> Recreate the database (as root)"
 mysql --table --host=127.0.0.1 -uroot -p < scripts/setup.sql > /dev/null
 
 loadSqlIntoSkolan "ddl.sql"     "Create tables"
-loadSqlIntoSkolan "insert.sql"  "Insert into larare"
+loadSqlIntoSkolan "insert_generated.sql"  "Insert into larare"
