@@ -1,3 +1,5 @@
+USE `recipe_website`;
+
 -- -----------------------------------------------------
 -- Table `recipe_website`.`recipes`
 -- -----------------------------------------------------
@@ -7,6 +9,7 @@ CREATE TABLE IF NOT EXISTS `recipe_website`.`recipes` (
   `instructions` MEDIUMTEXT NOT NULL,
   `description` MEDIUMTEXT NOT NULL,
   `cook_time` INT NULL,
+  `portions` VARCHAR(10) NULL,
   PRIMARY KEY (`recipe_id`),
   UNIQUE INDEX `id_UNIQUE` (`recipe_id` ASC))
 ENGINE = InnoDB;
@@ -17,7 +20,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `recipe_website`.`category` (
   `category_id` INT NOT NULL AUTO_INCREMENT,
-  `label` VARCHAR(100) NOT NULL,
+  `label` VARCHAR(100) NOT NULL UNIQUE,
   PRIMARY KEY (`category_id`),
   UNIQUE INDEX `idtags_UNIQUE` (`category_id` ASC))
 ENGINE = InnoDB;
@@ -28,7 +31,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `recipe_website`.`ingredients` (
   `ingredient_id` INT NOT NULL AUTO_INCREMENT,
-  `label` VARCHAR(75) NOT NULL,
+  `label` VARCHAR(75) NOT NULL UNIQUE,
   PRIMARY KEY (`ingredient_id`),
   UNIQUE INDEX `id_UNIQUE` (`ingredient_id` ASC))
 ENGINE = InnoDB;
@@ -99,3 +102,26 @@ CREATE TABLE IF NOT EXISTS `recipe_website`.`images` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Stored Procedure `recipe_website`.`connect_ingredient_dev`
+-- Used when inserting data during creation of DB.
+-- -----------------------------------------------------
+DELIMITER //
+CREATE PROCEDURE connect_ingredient_dev (
+	IN in_label VARCHAR(75),
+    IN in_amount VARCHAR(45)
+)
+BEGIN
+	IF NOT EXISTS (SELECT label FROM ingredients WHERE label = in_label) THEN
+		INSERT INTO ingredients (label) VALUES (in_label);
+
+	INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (
+		(SELECT MAX(recipe_id) FROM recipes),
+		(SELECT ingredient_id FROM ingredients where label = in_label),
+		in_amount
+	);
+	END IF;
+END //
+DELIMITER ;
