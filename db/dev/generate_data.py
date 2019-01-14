@@ -22,6 +22,9 @@ from recipe_ingredients as ri\n\
 
 
 def build_recipe_string(recipe):
+    """
+    Build SQL string for a recipe
+    """
     insert_receipe = "INSERT INTO recipes (title, instructions, description, cook_time) VALUES (\n\
         '{title}',\n\
         '{instr}',\n\
@@ -44,6 +47,9 @@ def build_recipe_string(recipe):
     return recipe_sql
 
 def generate_sql(recipes):
+    """
+    Build SQL string for all recipes from file
+    """
     global SQL
     recipes_list = []
     for recipe in recipes:
@@ -53,6 +59,9 @@ def generate_sql(recipes):
     SQL = SQL.format(insert="\n".join(recipes_list))
 
 def dump_sql_query():
+    """
+    Write SQL string to file
+    """
     with open(SQL_FILE, "w") as fh:
         fh.write(SQL)
 
