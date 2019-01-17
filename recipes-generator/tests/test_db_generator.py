@@ -3,7 +3,6 @@
 """
 Tests the class used to retrieve recipes data from the database
 """
-from sys import argv
 import unittest
 from context import db_retriver as db_r
 
@@ -19,6 +18,7 @@ class TestCreateGamefield(unittest.TestCase):
         """
         Testing creat_2dlist function
         """
+        db_r.DataRetriever(db_r.DataRetriever.create_dev_connection())
         self.assertEqual(True, True)
 
 if __name__ == '__main__':
