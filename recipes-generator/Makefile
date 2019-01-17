@@ -76,19 +76,15 @@ generate_recipes:
 # target: validate                - Validate code with pylint
 .PHONY: validate
 validate:
-	@pylint --rcfile=./../.pylintrc generator tests \
-		&& $(ECHO) "$(OK_COLOR)Code is valid " "$(NO_COLOR)" \
-		|| $(ECHO) "$(ERROR_COLOR)Clean up your code!" "$(NO_COLOR)"
+	@pylint --rcfile=./../.pylintrc generator tests
 
 
 
 # target: exec-tests              - Run tests in tests/runner.py with coverage.py
 .PHONY: exec-tests
 exec-tests: clean
-	@$(ECHO) "$(ACTION)---> Running a	ll tests in tests/" "$(NO_COLOR)"
-	@${py} -m coverage run --rcfile=../.coveragerc tests/runner.py \
-		&& $(ECHO) "$(OK_COLOR)All tests passed " "$(NO_COLOR)" \
-		|| $(ECHO) "$(ERROR_COLOR)Tests faild" "$(NO_COLOR)"
+	@$(ECHO) "$(ACTION)---> Running all tests in tests/" "$(NO_COLOR)"
+	@${py} -m coverage run --rcfile=../.coveragerc tests/runner.py
 
 
 
