@@ -15,4 +15,4 @@ before_script:
   - cd recipes-generator
 
 script:
-  - make validate exec-test
+  - make validate exec-tests
