@@ -1,5 +1,5 @@
 # pip install -r requirements.txt
-# coverage~=4.5.1
+coverage~=4.5.1
 pylint >= 1.4.4
 jinja2 >= 2.10
 mysql-connector >= 2.1.6
