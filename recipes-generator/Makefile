@@ -90,7 +90,7 @@ exec-tests: clean
 
 # target: test                    - Run tests and display code coverage
 .PHONY: test
-test: exec-tests
+test: validate exec-tests
 	${py} -m coverage report  --rcfile=../.coveragerc
 
 
