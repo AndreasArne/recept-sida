@@ -11,6 +11,10 @@
         "desc": "Detta är en jättegod Flygande Jakob utan banan",
         "cook_time": 60,
         "portions": "4-5",
+        "tags": ["Middag", "Kyckling"],
+        "images": [
+            "pic2.png"
+        ],
         "ingredients": [
             {"label":"Grillad kyckling", "amount": "1"},
             {"label":"Italiensk salladskrydda", "amount": "2 krdm"},
@@ -40,6 +44,10 @@
         "desc": "Fantastisk och lätt Creme brulee.",
         "cook_time": 195,
         "portions": "6",
+        "tags": ["Efterrätt"],
+        "images": [
+            "pic.png"
+        ],
         "ingredients": [
             {"label":"Visp grädde", "amount": "4,5 dl"},
             {"label":"Mjölk", "amount": "1,5 dl"},
