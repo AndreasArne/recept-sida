@@ -2,7 +2,7 @@
 """
 Retrieve recipes from database
 """
-import configparser
+from configparser import ConfigParser
 import mysql.connector
 import json
 
@@ -19,16 +19,16 @@ class DataRetriever():
         """
         Get databse config from config file
         """
-        config = configparser.ConfigParser()
+        config = ConfigParser()
         config.read('/mnt/c/Users/aar/.my.cnf')
         return dict(config["mysql"])
 
-    @staticmethod
-    def create_dev_connection():
+    @classmethod
+    def create_dev_connection(cls):
         """
         Create DB connection for dev environment
         """
-        config = DataRetriever.get_db_config()
+        config = cls.get_db_config()
 
         mydb = mysql.connector.connect(
             host=config["host"],
