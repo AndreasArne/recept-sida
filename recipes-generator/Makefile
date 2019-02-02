@@ -69,7 +69,7 @@ help:
 # target: generate_recipes   - Generate recipes html files from DB.
 .PHONY: generate_recipes
 generate_recipes:
-	@${py} -m generator.main.py
+	@${py} -m generator.html_generator
 
 
 
