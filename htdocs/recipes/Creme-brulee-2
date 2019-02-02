@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <title>Creme brulee</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <h1>Creme brulee</h1>
+
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

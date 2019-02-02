@@ -6,4 +6,7 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 #pylint: disable=unused-import, wrong-import-position
-from generator import db_retriver
+from generator import html_generator
+from generator import db_retriever
+
+PROJECT_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
