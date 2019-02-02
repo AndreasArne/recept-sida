@@ -2,8 +2,10 @@
 """
 Generate insert script script for mysql
 """
+import os
 import json
-DATA_FILE = "recipes.json"
+DATA_FILE = os.path.abspath(os.path.join(\
+    os.path.dirname(__file__), "../..")) + "/resources/recipes.json"
 SQL_FILE = "db/insert_generated.sql"
 
 
