@@ -4,7 +4,6 @@ Retrieve recipes from database
 """
 from configparser import ConfigParser
 import mysql.connector
-import json
 
 class DataRetriever():
     """
@@ -46,24 +45,21 @@ class DataRetriever():
 
         # Images
         cursor.execute("SELECT file_name FROM images \
-            WHERE recipe_id = %s", (recipe_id,)
-        )
+            WHERE recipe_id = %s", (recipe_id,))
         recipe["images"] = [row[0] for row in cursor]
         
         # Tags
         cursor.execute("SELECT t.label FROM tags as t\
             INNER JOIN recipe_tag as rt\
                 ON rt.tag_id = t.id\
-            WHERE rt.recipe_id = %s", (recipe_id,)
-        )
+            WHERE rt.recipe_id = %s", (recipe_id,))
         recipe["tags"] = [row[0] for row in cursor]
 
         # Ingredients
         cursor.execute("SELECT ri.amount, i.label FROM ingredients as i\
             INNER JOIN recipe_ingredient as ri\
                 ON ri.ingredient_id = i.id\
-            WHERE ri.recipe_id = %s", (recipe_id,)
-        )
+            WHERE ri.recipe_id = %s", (recipe_id,))
         recipe["ingredients"] = [row[0] + " " + row[1] for row in cursor]
 
     def query_all_recipes(self):
