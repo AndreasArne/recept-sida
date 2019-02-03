@@ -15,9 +15,20 @@ class HtmlGeneratorTestCase(unittest.TestCase):
     """
     Test suite for testing the class for generating html files
     """
+    RESOURCES_RECPIES = PROJECT_FOLDER + "/recipes-generator/tests/\
+resources/recipes_html/"
 
     def setUp(self):
-        pass
+        self.maxDiff = None
+
+
+    @staticmethod
+    def read_file(filename):
+        """
+        readfiles
+        """
+        with open(filename, "r") as fh:
+            return fh.read()
 
     def test_write_html_file(self):
         """
@@ -34,6 +45,23 @@ class HtmlGeneratorTestCase(unittest.TestCase):
         handler = m()
         handler.write.assert_called_with("content")
 
+    def test_create_filename(self):
+        """
+        Test Generator.generate_recipe_html()
+        """
+        test_dict = [{
+            "title": "test name",
+            "id": 3
+        }, {
+            "title": "test_name",
+            "id": "2"
+        }]
+        filename = gen.Generator.create_recipe_filename(test_dict[0])
+        self.assertEqual(filename, "test-name-3")
+
+        filename = gen.Generator.create_recipe_filename(test_dict[1])
+        self.assertEqual(filename, "test_name-2")
+
     def test_generate_html(self):
         """
         Test Generator.generate_recipe_html()
@@ -42,42 +70,16 @@ class HtmlGeneratorTestCase(unittest.TestCase):
         generator = gen.Generator(db, gen.Generator.create_jinja_env())
 
         with open(PROJECT_FOLDER + "/resources/recipes.json", "r") as json_file:
-            db.query_all_recipes.return_value = json.loads(json_file.read())
+            recipes_json = json.loads(json_file.read())
+            for indx_rec, recipe in enumerate(recipes_json):
+                for indx_ingr, ingredient in enumerate(recipe["ingredients"]):
+                    recipes_json[indx_rec]["ingredients"][indx_ingr] = ingredient["amount"] + " " + ingredient["label"]
+            db.query_all_recipes.return_value = recipes_json
 
-        # pylint: disable=C0330
-        recipes_html = [
-        """<!doctype html>
-<html lang="sv">
-<head>
-    <meta charset="utf-8">
-    <title>Flygande Jakob</title>
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="icon" href="favicon.ico">
-</head>
-<body>
-    <h1>Flygande Jakob</h1>
-
-<script type="text/javascript" src="js/main.js"></script>
-</body>
-</html>""",
-        """<!doctype html>
-<html lang="sv">
-<head>
-    <meta charset="utf-8">
-    <title>Creme brulee</title>
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="icon" href="favicon.ico">
-</head>
-<body>
-    <h1>Creme brulee</h1>
-
-<script type="text/javascript" src="js/main.js"></script>
-</body>
-</html>"""]
-        for indx, recipe in enumerate(generator.generate_recipe_html()):
+        for recipe_tuple in generator.generate_recipe_html():
             self.assertEqual(
-                recipe[1], 
-                recipes_html[indx]
+                recipe_tuple[1],
+                self.read_file(self.RESOURCES_RECPIES + recipe_tuple[0])
             )
 
 if __name__ == '__main__':

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <title>Creme brulee</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <h1>Creme brulee</h1>
+    <div class="description">
+        Fantastisk och lätt Creme brulee.
+        <div class="images">
+            <img src="img/pic.png">
+        </div>
+    </div>
+    <div>
+        <span>Portioner: 6</span>
+        <span>Tillagningstid: 195</span>
+    </div>
+    <div class="ingredients">
+        <ul>
+            <li>4,5 dl Visp grädde</li>
+            <li>1,5 dl Mjölk</li>
+            <li>6 Äggulor</li>
+            <li>75g (3/4dl) Strö socker</li>
+            <li>1 Vaniljstång</li>
+        </ul>
+    </div>
+    <div class="instructions">
+        <ul>
+            <li>Sätt ugenen på 160c</li>
+            <li>Koka upp grädde, mjölk och vaniljstången. Låt stå i 15 min.</li>
+            <li>Plocka upp vaniljstången</li>
+            <li>Vispa socker och äggulor tills det bleknar.</li>
+            <li>Vispa ner gräddblandningen lite i taget i äggsmeten. Dra av skum.</li>
+            <li>Fördela i formar. Dra av skum</li>
+            <li>Placera formar i en ugnsform och fyll med varmtvatten upp till hälften av formarnas höjd.</li>
+            <li>Grädda i ugnen 30-45 min tills smeten är &#34;woobly&#34;.</li>
+            <li>Låt svalna i minst två timmar i kylskåpet.</li>
+            <li>Plocka ut formar 30 min innan sockring.</li>
+            <li>Ha på ett lager mer strösocker på varje form och bränn med brännare.</li>
+            <li>Låt svalna i 5 minuter innan förtäring.</li>
+        </ul>
+    </div>
+    <div class="tags">
+        <ul>
+            <li>Efterrätt</li>
+        </ul>
+    </div>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <title>Flygande Jakob</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <h1>Flygande Jakob</h1>
+    <div class="description">
+        Detta är en jättegod Flygande Jakob utan banan
+        <div class="images">
+            <img src="img/pic2.png">
+        </div>
+    </div>
+    <div>
+        <span>Portioner: 4-5</span>
+        <span>Tillagningstid: 60</span>
+    </div>
+    <div class="ingredients">
+        <ul>
+            <li>1 Grillad kyckling</li>
+            <li>2 krdm Italiensk salladskrydda</li>
+            <li>3 dl Visp grädde</li>
+            <li>1,5 dl Creme freiche</li>
+            <li>1,5 dl Chilli sås</li>
+            <li>2 paket Bacon</li>
+            <li>1 dl Salta jordnötter</li>
+        </ul>
+    </div>
+    <div class="instructions">
+        <ul>
+            <li>Bena ur kyckling och lägg i form. Strö över sallads krydda</li>
+            <li>Vispa grädde ganska fast, blanda ner creme frieche och chilli  sås. Bre över kycklingingen.</li>
+            <li>Klipp bacon i lagom bitar och stek lätt. Strö jordnötter över formen.</li>
+            <li>Laga i ugnen i 30 min, 175c.</li>
+            <li>Server med ris och sallad.</li>
+        </ul>
+    </div>
+    <div class="tags">
+        <ul>
+            <li>Middag</li>
+            <li>Kyckling</li>
+        </ul>
+    </div>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
