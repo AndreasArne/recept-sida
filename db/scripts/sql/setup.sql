@@ -7,12 +7,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema recipe_website
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `recipe_website` ;
+DROP DATABASE IF EXISTS `recipe_website` ;
+
 
 -- -----------------------------------------------------
 -- Schema recipe_website
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `recipe_website` DEFAULT CHARACTER SET utf8 COLLATE utf8_swedish_ci ;
+CREATE DATABASE IF NOT EXISTS `recipe_website` DEFAULT CHARACTER SET utf8 COLLATE utf8_swedish_ci ;
 USE `recipe_website` ;
 
 

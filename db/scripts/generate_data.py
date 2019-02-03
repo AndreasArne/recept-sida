@@ -6,7 +6,7 @@ import os
 import json
 DATA_FILE = os.path.abspath(os.path.join(\
     os.path.dirname(__file__), "../..")) + "/resources/recipes.json"
-SQL_FILE = "db/insert_generated.sql"
+SQL_FILE = "sql/insert_generated.sql"
 
 
 # USE `recipe_website`;
@@ -45,8 +45,8 @@ def build_recipe_string(recipe):
     # Recipe
     recipe_sql = insert_receipe.format(
         title=recipe["title"],
-        instr="|".join(recipe["instr"]),
-        desc=recipe["desc"],
+        instr="|".join(recipe["instructions"]),
+        desc=recipe["description"],
         cook_time=recipe["cook_time"],
         portions=recipe["portions"],
     )

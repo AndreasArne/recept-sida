@@ -106,13 +106,13 @@ CREATE PROCEDURE connect_ingredient_dev (
 BEGIN
 	IF NOT EXISTS (SELECT label FROM ingredients WHERE label = in_label) THEN
 		INSERT INTO ingredients (label) VALUES (in_label);
+    END IF;
 
 	INSERT INTO recipe_ingredient (recipe_id, ingredient_id, amount) VALUES (
 		(SELECT MAX(r.id) FROM recipes as r),
 		(SELECT i.id FROM ingredients as i where label = in_label),
 		in_amount
 	);
-	END IF;
 END //
 DELIMITER ;
 
@@ -125,14 +125,13 @@ DELIMITER //
 CREATE PROCEDURE connect_tag_dev (
 	IN in_label VARCHAR(75)
 )
-BEGIN
+BEGIN 
 	IF NOT EXISTS (SELECT label FROM tags WHERE label = in_label) THEN
 		INSERT INTO tags (label) VALUES (in_label);
-
+	END IF;
 	INSERT INTO recipe_tag (recipe_id, tag_id) VALUES (
 		(SELECT MAX(r.id) FROM recipes as r),
 		(SELECT t.id FROM tags as t where label = in_label)
 	);
-	END IF;
 END //
 DELIMITER ;
