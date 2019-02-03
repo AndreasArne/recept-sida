@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
 #
-# Load a SQL file into skolan using user:pass
+# Load a SQL file into db using user:pass
 #
-function loadSqlIntoSkolan
+function loadSqlIntoDB
 {
-    echo ">>> $2 ($1)"
-    mysql --table --host=127.0.0.1 -udev < sql/$1 > /dev/null
+   echo ">>> $2 ($1)"
+    if [[ "$OSTYPE" == "msys" ]]; then
+        winpty mysql --table --host=127.0.0.1 -u$3 -p -e "source sql/$1"
+    else
+        mysql --table --host=127.0.0.1 -u$3 < sql/$1 > /dev/null
+    fi
 }
 
 #
@@ -14,7 +18,6 @@ function loadSqlIntoSkolan
 #
 echo ">>> Reset recipe database"
 echo ">>> Recreate the database (as root)"
-mysql --table --host=127.0.0.1 -uroot -p < sql/setup.sql > /dev/null
-
-loadSqlIntoSkolan "ddl.sql"     "Create tables"
-loadSqlIntoSkolan "insert_generated.sql"  "Insert all recipes"
+loadSqlIntoDB "setup.sql"       "Create database"   "root"
+loadSqlIntoDB "ddl.sql"     "Create tables"     "dev"
+loadSqlIntoDB "insert_generated.sql"  "Insert all recipes" "dev"
