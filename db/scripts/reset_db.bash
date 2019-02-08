@@ -9,7 +9,7 @@ function loadSqlIntoDB
     if [[ "$OSTYPE" == "msys" ]]; then
         winpty mysql --table --host=127.0.0.1 -u$3 -p -e "source sql/$1"
     else
-        mysql --table --host=127.0.0.1 -u$3 < sql/$1 > /dev/null
+        mysql --table --host=127.0.0.1 -u$3 -p < sql/$1 > /dev/null
     fi
 }
 
