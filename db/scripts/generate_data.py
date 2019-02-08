@@ -6,7 +6,7 @@ import os
 import json
 DATA_FILE = os.path.abspath(os.path.join(\
     os.path.dirname(__file__), "../..")) + "/resources/recipes.json"
-SQL_FILE = "sql/insert_generated.sql"
+SQL_FILE = "../sql/insert_generated.sql"
 
 
 # USE `recipe_website`;
