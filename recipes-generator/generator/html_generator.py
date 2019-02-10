@@ -11,7 +11,7 @@ class Generator():
     Class for generating html files
     """
     RECIPE_OUTPUT_FOLDER = os.path.abspath(os.path.join(\
-        os.path.dirname(__file__), '../..')) + "/htdocs/recipes/"
+        os.path.dirname(__file__), '../..')) + "/htdocs/recept/"
     RECIPE_TEMPLATE_FOLDER = os.path.abspath(os.path.join(\
         os.path.dirname(__file__))) + "/templates/"
 
@@ -39,7 +39,7 @@ class Generator():
         """
         Create filename from title and id
         """
-        return "{title}-{id}".format(
+        return "{title}-{id}.html".format(
             title=recipe["title"].replace(" ", "-"),
             id=recipe["id"],
         )

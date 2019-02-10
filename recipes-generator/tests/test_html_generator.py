@@ -39,9 +39,9 @@ resources/recipes_html/"
 
         m = mock.mock_open()
         with mock.patch('builtins.open', m, create=False):
-            generator.write_html_to_file("test-name-000", "content")
+            generator.write_html_to_file("test-name-000.html", "content")
 
-        m.assert_called_once_with(PROJECT_FOLDER + "/htdocs/recipes/test-name-000", "w")
+        m.assert_called_once_with(PROJECT_FOLDER + "/htdocs/recept/test-name-000.html", "w")
         handler = m()
         handler.write.assert_called_with("content")
 
@@ -57,10 +57,10 @@ resources/recipes_html/"
             "id": "2"
         }]
         filename = gen.Generator.create_recipe_filename(test_dict[0])
-        self.assertEqual(filename, "test-name-3")
+        self.assertEqual(filename, "test-name-3.html")
 
         filename = gen.Generator.create_recipe_filename(test_dict[1])
-        self.assertEqual(filename, "test_name-2")
+        self.assertEqual(filename, "test_name-2.html")
 
     def test_generate_html(self):
         """
