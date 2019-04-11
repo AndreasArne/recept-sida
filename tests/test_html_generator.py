@@ -6,7 +6,7 @@ Tests the class used to retrieve recipes data from the database
 import unittest
 import json
 import mock
-from context import html_generator as gen
+from context import recipe_generator as gen
 from context import db_retriever as db_r
 from context import PROJECT_FOLDER
 
@@ -15,8 +15,7 @@ class HtmlGeneratorTestCase(unittest.TestCase):
     """
     Test suite for testing the class for generating html files
     """
-    RESOURCES_RECPIES = PROJECT_FOLDER + "/recipes-generator/tests/\
-resources/recipes_html/"
+    RESOURCES_RECPIES = PROJECT_FOLDER + "/tests/resources/recipes_html/"
 
     def setUp(self):
         self.maxDiff = None
