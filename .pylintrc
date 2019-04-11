@@ -1,6 +1,8 @@
 [MASTER]
 
 #init-hook='import sys; import os; sys.path.append(os.getcwd() + "/example/hello_world")'
+ignore=__init__.py # notworking
+ignore-patterns=.*__init__.* # not working
 
 [MESSAGES CONTROL]
 
