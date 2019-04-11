@@ -1,0 +1,10 @@
+version: "3"
+services:
+    recipe-site:
+        build:
+            context: ./
+            dockerfile: ./docker/Dockerfile
+        ports: [ "80:80" ]
+        volumes: 
+            - ./htdocs:/var/www/html
+        # restart: always
