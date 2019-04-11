@@ -2,9 +2,9 @@
 """
 Generate html files from DB data
 """
-import os
-from jinja2 import Environment, FileSystemLoader, select_autoescape
 from generator.db_retriever import DataRetriever
+
+
 
 class RecipeGenerator():
     """
@@ -16,19 +16,15 @@ class RecipeGenerator():
         self.jinja = env
 
 
-    @staticmethod
-    def create_jinja_env(recipe_template_folder):
+
+    def execute(self, output_folder):
         """
-        Create jinja2 environment
+        Main method of class. Generates code and write to file.
         """
-        file_loader = FileSystemLoader(recipe_template_folder)
-        env = Environment(autoescape=select_autoescape(
-            disabled_extensions=('txt',),
-            default_for_string=True,
-            default=True),
-                          loader=file_loader
-                          )
-        return env
+        for name, recipe_html in g.generate_html_code():
+            g.write_html_to_file(output_folder, name, recipe_html)
+
+
 
     @staticmethod
     def create_recipe_filename(recipe):
@@ -40,7 +36,9 @@ class RecipeGenerator():
             id=recipe["id"],
         )
 
-    def generate_recipe_html(self):
+
+
+    def generate_html_code(self):
         """
         Use jinja2 to generate html files
         """
@@ -48,6 +46,8 @@ class RecipeGenerator():
         for recipe in self.db_r.query_all_recipes():
             yield self.create_recipe_filename(recipe),\
             template.render(recipe=recipe)
+
+
 
     def write_html_to_file(self, folder, file_name, recipe):
         """
@@ -58,6 +58,7 @@ class RecipeGenerator():
             fh.write(recipe)
 
 if __name__ == "__main__":
+    import os
     RECIPE_TEMPLATE_FOLDER = os.path.abspath(os.path.join(\
             os.path.dirname(__file__))) + "../templates/"
     RECIPE_OUTPUT_FOLDER = os.path.abspath(os.path.join(\
