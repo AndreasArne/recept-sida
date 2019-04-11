@@ -16,6 +16,7 @@ class RecipeGeneratorTestCase(unittest.TestCase):
     Test suite for testing the class for generating html files
     """
     RESOURCES_RECPIES = PROJECT_FOLDER + "/tests/resources/recipes_html/"
+    RECIPE_TEMPLATE_FOLDER = PROJECT_FOLDER + "/generator/templates/"
 
     def setUp(self):
         self.maxDiff = None
@@ -34,13 +35,14 @@ class RecipeGeneratorTestCase(unittest.TestCase):
         Test Generator.write_html_to_file() 
         """
         db = mock.create_autospec(db_r.DataRetriever)
-        generator = gen.RecipeGenerator(db, gen.RecipeGenerator.create_jinja_env())
+        generator = gen.RecipeGenerator(db, gen.RecipeGenerator.create_jinja_env(self.RECIPE_TEMPLATE_FOLDER))
+        folder = "/htdocs/recept/"
 
         m = mock.mock_open()
         with mock.patch('builtins.open', m, create=False):
-            generator.write_html_to_file("test-name-000.html", "content")
+            generator.write_html_to_file(folder, "test-name-000.html", "content")
 
-        m.assert_called_once_with(PROJECT_FOLDER + "/htdocs/recept/test-name-000.html", "w")
+        m.assert_called_once_with(folder + "test-name-000.html", "w")
         handler = m()
         handler.write.assert_called_with("content")
 
@@ -66,7 +68,7 @@ class RecipeGeneratorTestCase(unittest.TestCase):
         Test RecipeGenerator.generate_recipe_html()
         """
         db = mock.create_autospec(db_r.DataRetriever)
-        generator = gen.RecipeGenerator(db, gen.RecipeGenerator.create_jinja_env())
+        generator = gen.RecipeGenerator(db, gen.RecipeGenerator.create_jinja_env(self.RECIPE_TEMPLATE_FOLDER))
 
         with open(PROJECT_FOLDER + "/resources/recipes.json", "r") as json_file:
             recipes_json = json.loads(json_file.read())

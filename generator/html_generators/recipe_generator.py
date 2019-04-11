@@ -10,10 +10,6 @@ class RecipeGenerator():
     """
     Class for generating html files
     """
-    RECIPE_OUTPUT_FOLDER = os.path.abspath(os.path.join(\
-        os.path.dirname(__file__), '../..')) + "/htdocs/recept/"
-    RECIPE_TEMPLATE_FOLDER = os.path.abspath(os.path.join(\
-        os.path.dirname(__file__))) + "/templates/"
 
     def __init__(self, db_retriever, env):
         self.db_r = db_retriever
@@ -21,11 +17,11 @@ class RecipeGenerator():
 
 
     @staticmethod
-    def create_jinja_env():
+    def create_jinja_env(recipe_template_folder):
         """
         Create jinja2 environment
         """
-        file_loader = FileSystemLoader(RecipeGenerator.RECIPE_TEMPLATE_FOLDER)
+        file_loader = FileSystemLoader(recipe_template_folder)
         env = Environment(autoescape=select_autoescape(
             disabled_extensions=('txt',),
             default_for_string=True,
@@ -53,16 +49,20 @@ class RecipeGenerator():
             yield self.create_recipe_filename(recipe),\
             template.render(recipe=recipe)
 
-    def write_html_to_file(self, file_name, recipe):
+    def write_html_to_file(self, folder, file_name, recipe):
         """
         Write recipe to html file
         """
-        file_path = self.RECIPE_OUTPUT_FOLDER + file_name
+        file_path = folder + file_name
         with open(file_path, "w") as fh:
             fh.write(recipe)
 
 if __name__ == "__main__":
+    RECIPE_TEMPLATE_FOLDER = os.path.abspath(os.path.join(\
+            os.path.dirname(__file__))) + "../templates/"
+    RECIPE_OUTPUT_FOLDER = os.path.abspath(os.path.join(\
+        os.path.dirname(__file__), '../..')) + "/htdocs/recept/"
     db_r = DataRetriever(DataRetriever.create_dev_connection())
-    g = Generator(db_r, Generator.create_jinja_env())
+    g = Generator(db_r, Generator.create_jinja_env(RECIPE_TEMPLATE_FOLDER))
     for name, recipe_html in g.generate_recipe_html():
-        g.write_html_to_file(name, recipe_html)
+        g.write_html_to_file(RECIPE_OUTPUT_FOLDER, name, recipe_html)
