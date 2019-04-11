@@ -23,6 +23,13 @@ ifeq (, $(@shell which pip3))
 else
 	pip = pip
 endif
+# Decide if use firefox or firefox.exe
+ifeq (, $(@shell which firefox.exe))
+	browser = firefox.exe
+else
+	browser = firefox
+endif
+
 
 # Detect OS
 OS = $(shell uname -s)
@@ -66,17 +73,17 @@ help:
 
 
 
-# target: generate_recipes   - Generate recipes html files from DB.
-.PHONY: generate_recipes
-generate_recipes:
-	@${py} -m generator.html_generator
+# target: generate_site   		 - Generate html files from DB.
+.PHONY: generate_site
+generate_site:
+	@${py} -m generator.main.py
 
 
 
 # target: validate                - Validate code with pylint
 .PHONY: validate
 validate:
-	@pylint --rcfile=./../.pylintrc generator tests
+	@pylint --rcfile=.pylintrc generator tests
 
 
 
@@ -84,30 +91,32 @@ validate:
 .PHONY: exec-tests
 exec-tests: clean
 	@$(ECHO) "$(ACTION)---> Running all tests in tests/" "$(NO_COLOR)"
-	@${py} -m coverage run --rcfile=../.coveragerc tests/runner.py
+	@${py} -m coverage run --rcfile=.coveragerc tests/runner.py
 
 
 
 # target: test                    - Run tests and display code coverage
 .PHONY: test
 test: validate exec-tests
-	${py} -m coverage report  --rcfile=../.coveragerc
+	${py} -m coverage report  --rcfile=.coveragerc
 
 
 
 # target: test-html               - Run tests and display detailed code coverage with html
 .PHONY: test-html
 test-html: exec-tests
-	${py} -m coverage html  --rcfile=../.coveragerc && firefox tests/coverage_html/index.html &
+	${py} -m coverage html  --rcfile=.coveragerc && ${browser} tests/coverage_html/index.html &
 
 
 
 # target: clean                   - Remove all generated files
 .PHONY: clean
 clean:
-	rm -rf __pycache__
-	rm -rf generator/__pycache__
-	rm -rf tests/__pycache__
+	find . -name '*.pyc' -exec rm -f {} +
+	find . -name '*.pyo' -exec rm -f {} +
+	find . -name '*~' -exec rm -f {} +
+	find . -name '__pycache__' -exec rm -fr {} +
+
 	rm -f .coverage
 	rm -rf tests/coverage_html
 
@@ -118,6 +127,11 @@ clean:
 install:
 	${pip} install -r requirements.txt
 
+
+# target: install                 - Install all Python packages specified in requirement.txt
+.PHONY: install-dev
+install-dev:
+	${pip} install -r requirements/dev.txt
 
 
 # target: install-travis           - Install all packages for Travis
