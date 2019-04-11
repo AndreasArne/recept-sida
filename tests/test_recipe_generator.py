@@ -11,7 +11,7 @@ from context import db_retriever as db_r
 from context import PROJECT_FOLDER
 
 
-class HtmlGeneratorTestCase(unittest.TestCase):
+class RecipeGeneratorTestCase(unittest.TestCase):
     """
     Test suite for testing the class for generating html files
     """
@@ -34,7 +34,7 @@ class HtmlGeneratorTestCase(unittest.TestCase):
         Test Generator.write_html_to_file() 
         """
         db = mock.create_autospec(db_r.DataRetriever)
-        generator = gen.Generator(db, gen.Generator.create_jinja_env())
+        generator = gen.RecipeGenerator(db, gen.RecipeGenerator.create_jinja_env())
 
         m = mock.mock_open()
         with mock.patch('builtins.open', m, create=False):
@@ -55,18 +55,18 @@ class HtmlGeneratorTestCase(unittest.TestCase):
             "title": "test_name",
             "id": "2"
         }]
-        filename = gen.Generator.create_recipe_filename(test_dict[0])
+        filename = gen.RecipeGenerator.create_recipe_filename(test_dict[0])
         self.assertEqual(filename, "test-name-3.html")
 
-        filename = gen.Generator.create_recipe_filename(test_dict[1])
+        filename = gen.RecipeGenerator.create_recipe_filename(test_dict[1])
         self.assertEqual(filename, "test_name-2.html")
 
     def test_generate_html(self):
         """
-        Test Generator.generate_recipe_html()
+        Test RecipeGenerator.generate_recipe_html()
         """
         db = mock.create_autospec(db_r.DataRetriever)
-        generator = gen.Generator(db, gen.Generator.create_jinja_env())
+        generator = gen.RecipeGenerator(db, gen.RecipeGenerator.create_jinja_env())
 
         with open(PROJECT_FOLDER + "/resources/recipes.json", "r") as json_file:
             recipes_json = json.loads(json_file.read())

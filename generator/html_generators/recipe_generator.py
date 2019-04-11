@@ -6,7 +6,7 @@ import os
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from generator.db_retriever import DataRetriever
 
-class Generator():
+class RecipeGenerator():
     """
     Class for generating html files
     """
@@ -25,7 +25,7 @@ class Generator():
         """
         Create jinja2 environment
         """
-        file_loader = FileSystemLoader(Generator.RECIPE_TEMPLATE_FOLDER)
+        file_loader = FileSystemLoader(RecipeGenerator.RECIPE_TEMPLATE_FOLDER)
         env = Environment(autoescape=select_autoescape(
             disabled_extensions=('txt',),
             default_for_string=True,
