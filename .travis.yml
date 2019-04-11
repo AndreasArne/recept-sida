@@ -8,10 +8,10 @@ python:
 sudo: enabled
 
 install:
-  - pip install -r recipes-generator/requirements.txt
+  - pip install -r requirements/requirements/test.txt
 
-before_script:
-  - cd recipes-generator
+# before_script:
+  # - cd recipes-generator
 
 script:
   - make validate exec-tests
