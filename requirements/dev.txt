@@ -1,0 +1,2 @@
+-r test.txt
+pylint >= 1.4.4
