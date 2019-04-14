@@ -8,6 +8,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from generator.html_generators import index_generator
 
 
+
 class SiteGenerator():
     """
     Class for generating html code for site

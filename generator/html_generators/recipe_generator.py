@@ -57,6 +57,8 @@ class RecipeGenerator():
         with open(file_path, "w") as fh:
             fh.write(recipe)
 
+
+
 if __name__ == "__main__":
     import os
     RECIPE_TEMPLATE_FOLDER = os.path.abspath(os.path.join(\
