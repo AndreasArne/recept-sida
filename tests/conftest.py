@@ -1,7 +1,10 @@
 import pytest
 import os
 import json
+import shutil
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+
+
 
 PROJECT_FOLDER = os.path.abspath(os.path.join(\
     os.path.dirname(__file__), '../'))
@@ -14,6 +17,14 @@ def read_test_resource(file_name):
     index_file = PROJECT_FOLDER + "/tests/resources/" + file_name
     with open(index_file, "r") as fh:
         return fh.read()
+
+
+
+@pytest.fixture(scope="session")
+def clean_tmp():
+    def delete_folder():
+        shutil.rmtree(PROJECT_FOLDER + "/tests/tmp")
+    return delete_folder
 
 
 
