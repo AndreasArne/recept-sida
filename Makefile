@@ -76,7 +76,7 @@ help:
 # target: generate_site   		 - Generate html files from DB.
 .PHONY: generate_site
 generate_site:
-	@${py} -m generator.main.py
+	@${py} -m generator.site_generator
 
 
 
@@ -91,8 +91,7 @@ validate:
 .PHONY: exec-tests
 exec-tests: clean
 	@$(ECHO) "$(ACTION)---> Running all tests in tests/" "$(NO_COLOR)"
-	@${py} -m coverage run --rcfile=.coveragerc tests/runner.py
-
+	@${py} -m coverage run --rcfile=.coveragerc -m pytest
 
 
 # target: test                    - Run tests and display code coverage
